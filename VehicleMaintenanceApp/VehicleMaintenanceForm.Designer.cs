@@ -29,6 +29,10 @@ partial class VehicleMaintenanceForm
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
+        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
         label1 = new Label();
         txtPlateNumber = new TextBox();
         btnSearch = new Button();
@@ -53,7 +57,7 @@ partial class VehicleMaintenanceForm
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(76, 81);
+        label1.Location = new Point(71, 70);
         label1.Name = "label1";
         label1.Size = new Size(86, 15);
         label1.TabIndex = 1;
@@ -61,7 +65,7 @@ partial class VehicleMaintenanceForm
         // 
         // txtPlateNumber
         // 
-        txtPlateNumber.Location = new Point(208, 77);
+        txtPlateNumber.Location = new Point(203, 66);
         txtPlateNumber.Name = "txtPlateNumber";
         txtPlateNumber.Size = new Size(165, 23);
         txtPlateNumber.TabIndex = 2;
@@ -69,7 +73,7 @@ partial class VehicleMaintenanceForm
         // 
         // btnSearch
         // 
-        btnSearch.Location = new Point(455, 56);
+        btnSearch.Location = new Point(480, 56);
         btnSearch.Name = "btnSearch";
         btnSearch.Size = new Size(126, 40);
         btnSearch.TabIndex = 3;
@@ -79,7 +83,7 @@ partial class VehicleMaintenanceForm
         // 
         // btnAddVehicle
         // 
-        btnAddVehicle.Location = new Point(619, 56);
+        btnAddVehicle.Location = new Point(644, 56);
         btnAddVehicle.Name = "btnAddVehicle";
         btnAddVehicle.Size = new Size(126, 40);
         btnAddVehicle.TabIndex = 4;
@@ -89,7 +93,7 @@ partial class VehicleMaintenanceForm
         // 
         // btnAddMaintenance
         // 
-        btnAddMaintenance.Location = new Point(861, 56);
+        btnAddMaintenance.Location = new Point(985, 56);
         btnAddMaintenance.Name = "btnAddMaintenance";
         btnAddMaintenance.Size = new Size(126, 40);
         btnAddMaintenance.TabIndex = 5;
@@ -111,12 +115,14 @@ partial class VehicleMaintenanceForm
         // 
         dgwOldRecords.AllowUserToAddRows = false;
         dgwOldRecords.AllowUserToDeleteRows = false;
+        dgwOldRecords.AllowUserToResizeColumns = false;
         dgwOldRecords.AutoGenerateColumns = false;
         dgwOldRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgwOldRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         dgwOldRecords.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, createdDateDataGridViewTextBoxColumn, maintenanceTypeDataGridViewTextBoxColumn, unitDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, materialUnitPriceDataGridViewTextBoxColumn, taxRateDataGridViewTextBoxColumn, laborCostDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1 });
         dgwOldRecords.DataSource = maintenanceBindingSource;
         dgwOldRecords.Location = new Point(49, 135);
+        dgwOldRecords.MultiSelect = false;
         dgwOldRecords.Name = "dgwOldRecords";
         dgwOldRecords.ReadOnly = true;
         dgwOldRecords.Size = new Size(1281, 464);
@@ -158,6 +164,9 @@ partial class VehicleMaintenanceForm
         // quantityDataGridViewTextBoxColumn
         // 
         quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+        dataGridViewCellStyle1.Format = "N2";
+        dataGridViewCellStyle1.NullValue = null;
+        quantityDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
         quantityDataGridViewTextBoxColumn.HeaderText = "Miktar(Adet/Litre/Kutu)";
         quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
         quantityDataGridViewTextBoxColumn.ReadOnly = true;
@@ -166,6 +175,9 @@ partial class VehicleMaintenanceForm
         // materialUnitPriceDataGridViewTextBoxColumn
         // 
         materialUnitPriceDataGridViewTextBoxColumn.DataPropertyName = "MaterialUnitPrice";
+        dataGridViewCellStyle2.Format = "N2";
+        dataGridViewCellStyle2.NullValue = null;
+        materialUnitPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
         materialUnitPriceDataGridViewTextBoxColumn.HeaderText = "Birim Fiyatı(Adet,Litre,Kutu)";
         materialUnitPriceDataGridViewTextBoxColumn.Name = "materialUnitPriceDataGridViewTextBoxColumn";
         materialUnitPriceDataGridViewTextBoxColumn.ReadOnly = true;
@@ -182,6 +194,9 @@ partial class VehicleMaintenanceForm
         // laborCostDataGridViewTextBoxColumn
         // 
         laborCostDataGridViewTextBoxColumn.DataPropertyName = "LaborCost";
+        dataGridViewCellStyle3.Format = "N2";
+        dataGridViewCellStyle3.NullValue = null;
+        laborCostDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
         laborCostDataGridViewTextBoxColumn.HeaderText = "Extra Ücret(İşçilik)";
         laborCostDataGridViewTextBoxColumn.Name = "laborCostDataGridViewTextBoxColumn";
         laborCostDataGridViewTextBoxColumn.ReadOnly = true;
@@ -190,6 +205,9 @@ partial class VehicleMaintenanceForm
         // dataGridViewTextBoxColumn1
         // 
         dataGridViewTextBoxColumn1.DataPropertyName = "TotalAmount";
+        dataGridViewCellStyle4.Format = "N2";
+        dataGridViewCellStyle4.NullValue = null;
+        dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
         dataGridViewTextBoxColumn1.HeaderText = "Toplam Fiyat";
         dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
         dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -230,6 +248,7 @@ partial class VehicleMaintenanceForm
     private Button btnDeleteOldRecord;
     private DataGridViewTextBoxColumn totalAmountDataGridViewTextBoxColumn;
     private DataGridView dgwOldRecords;
+    private BindingSource maintenanceBindingSource;
     private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn maintenanceTypeDataGridViewTextBoxColumn;
@@ -239,5 +258,4 @@ partial class VehicleMaintenanceForm
     private DataGridViewTextBoxColumn taxRateDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn laborCostDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-    private BindingSource maintenanceBindingSource;
 }

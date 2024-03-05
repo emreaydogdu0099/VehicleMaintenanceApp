@@ -68,6 +68,8 @@ partial class AddMaintenanceForm
         label11 = new Label();
         txtUpdatedMaintenanceType = new TextBox();
         label12 = new Label();
+        lblTotalPrice = new Label();
+        btnDeleteMaintanence = new Button();
         groupBox1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)maintenanceBindingSource).BeginInit();
         ((System.ComponentModel.ISupportInitialize)dgwNewRecords).BeginInit();
@@ -220,11 +222,13 @@ partial class AddMaintenanceForm
         dgwNewRecords.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, createdDateDataGridViewTextBoxColumn, maintenanceTypeDataGridViewTextBoxColumn, unitDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, materialUnitPriceDataGridViewTextBoxColumn, taxRateDataGridViewTextBoxColumn, laborCostDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1 });
         dgwNewRecords.DataSource = maintenanceBindingSource;
         dgwNewRecords.Location = new Point(56, 24);
+        dgwNewRecords.MultiSelect = false;
         dgwNewRecords.Name = "dgwNewRecords";
         dgwNewRecords.ReadOnly = true;
         dgwNewRecords.Size = new Size(1281, 446);
         dgwNewRecords.TabIndex = 8;
         dgwNewRecords.CellClick += dgwNewRecords_CellClick;
+        dgwNewRecords.SelectionChanged += dgwNewRecords_SelectionChanged;
         // 
         // idDataGridViewTextBoxColumn
         // 
@@ -336,6 +340,7 @@ partial class AddMaintenanceForm
         btnUpdate.TabIndex = 12;
         btnUpdate.Text = "Güncelle";
         btnUpdate.UseVisualStyleBackColor = true;
+        btnUpdate.Click += btnUpdate_Click;
         // 
         // cmbUpdatedTaxRate
         // 
@@ -430,11 +435,33 @@ partial class AddMaintenanceForm
         label12.TabIndex = 0;
         label12.Text = "Yapılan İşlem/Malzeme Adı";
         // 
+        // lblTotalPrice
+        // 
+        lblTotalPrice.AutoSize = true;
+        lblTotalPrice.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        lblTotalPrice.ForeColor = Color.Red;
+        lblTotalPrice.Location = new Point(1150, 525);
+        lblTotalPrice.Name = "lblTotalPrice";
+        lblTotalPrice.Size = new Size(0, 21);
+        lblTotalPrice.TabIndex = 10;
+        // 
+        // btnDeleteMaintanence
+        // 
+        btnDeleteMaintanence.Location = new Point(1202, 642);
+        btnDeleteMaintanence.Name = "btnDeleteMaintanence";
+        btnDeleteMaintanence.Size = new Size(135, 38);
+        btnDeleteMaintanence.TabIndex = 11;
+        btnDeleteMaintanence.Text = "Seçilen Kaydı Sil";
+        btnDeleteMaintanence.UseVisualStyleBackColor = true;
+        btnDeleteMaintanence.Click += btnDeleteMaintanence_Click;
+        // 
         // AddMaintenanceForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1402, 829);
+        Controls.Add(btnDeleteMaintanence);
+        Controls.Add(lblTotalPrice);
         Controls.Add(groupBox2);
         Controls.Add(dgwNewRecords);
         Controls.Add(groupBox1);
@@ -449,6 +476,7 @@ partial class AddMaintenanceForm
         groupBox2.ResumeLayout(false);
         groupBox2.PerformLayout();
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -491,4 +519,6 @@ partial class AddMaintenanceForm
     private Label label11;
     private TextBox txtUpdatedMaintenanceType;
     private Label label12;
+    private Label lblTotalPrice;
+    private Button btnDeleteMaintanence;
 }

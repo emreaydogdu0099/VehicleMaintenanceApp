@@ -10,68 +10,17 @@ public partial class VehicleMaintenanceForm : Form
     {
         InitializeComponent();
     }
-
-    private void btnSearch_Click(object sender, EventArgs e)
-    {
-        using (var context = new AppDbContext())
-        {
-            string plateNumber = txtPlateNumber.Text;
-
-            // Plakanın veritabanında var olup olmadığını kontrol et
-            bool isPlateExists = context.Vehicles.Any(v => v.PlateNumber == plateNumber);
-
-            if (isPlateExists)
-            {
-                var maintenanceRecords = context.Maintenances
-                    .Include(m => m.Vehicle)
-                    .Where(m => m.Vehicle.PlateNumber == plateNumber)
-                    .ToList();
-
-                foreach (var maintenance in maintenanceRecords)
-                {
-                    maintenance.CalculateTotalAmount();
-                }
-
-                dgwOldRecords.DataSource = maintenanceRecords;
-            }
-            else
-                MessageBox.Show("Araç veritabanında bulunamadı. Lütfen öncelikle Kaydet butonuna tıklayın.");
-        }
-    }
-
-    private void txtPlateNumber_TextChanged(object sender, EventArgs e)
-    {
-        if (!string.IsNullOrWhiteSpace(txtPlateNumber.Text))
-            ButtonsEnabled();
-    }
     private void VehicleMaintenanceForm_Load(object sender, EventArgs e)
     {
         ButtonsDisabled();
     }
-
-
-
-    private void ButtonsDisabled()
-    {
-        btnAddVehicle.Enabled = false;
-        btnSearch.Enabled = false;
-        btnAddMaintenance.Enabled = false;
-    }
-    private void ButtonsEnabled()
-    {
-        btnAddVehicle.Enabled = true;
-        btnSearch.Enabled = true;
-        btnAddMaintenance.Enabled = true;
-    }
-
     private async void btnAddVehicle_Click(object sender, EventArgs e)
     {
         using (var context = new AppDbContext())
         {
-            string plateNumber = txtPlateNumber.Text;
+            string plateNumber = txtPlateNumber.Text.ToLower(); 
 
-            // Plakanın veritabanında var olup olmadığını kontrol et
-            bool isPlateExists = context.Vehicles.Any(v => v.PlateNumber == plateNumber);
+            bool isPlateExists = context.Vehicles.Any(v => v.PlateNumber.ToLower() == plateNumber);
 
             if (isPlateExists)
             {
@@ -86,14 +35,11 @@ public partial class VehicleMaintenanceForm : Form
             }
         }
     }
-
     private void btnAddMaintenance_Click(object sender, EventArgs e)
     {
         using (var context = new AppDbContext())
         {
-            string plateNumber = txtPlateNumber.Text;
-
-            // Plakanın veritabanında var olup olmadığını kontrol et
+            string plateNumber = txtPlateNumber.Text.ToLower();
             bool isPlateExists = context.Vehicles.Any(v => v.PlateNumber == plateNumber);
 
             if (isPlateExists)
@@ -102,13 +48,10 @@ public partial class VehicleMaintenanceForm : Form
                 form.ShowDialog();
             }
             else
-            {
                 MessageBox.Show("Lütfen öncelikle Kaydet butonu ile aracı veritabanına ekleyin.");
-            }
         }
 
     }
-
     private void btnDeleteOldRecord_Click(object sender, EventArgs e)
     {
         if (dgwOldRecords.SelectedRows.Count > 0)
@@ -127,8 +70,8 @@ public partial class VehicleMaintenanceForm : Form
                     context.SaveChanges();
                 }
                 dataSource.RemoveAt(selectedIndex);
-                dgwOldRecords.DataSource = null;  
-                dgwOldRecords.DataSource = dataSource;  
+                dgwOldRecords.DataSource = null;
+                dgwOldRecords.DataSource = dataSource;
                 MessageBox.Show("Kayıt başarıyla silindi.");
             }
         }
@@ -136,5 +79,49 @@ public partial class VehicleMaintenanceForm : Form
         {
             MessageBox.Show("Lütfen silmek istediğiniz bir kayıt seçin.");
         }
+    }
+    private void btnSearch_Click(object sender, EventArgs e)
+    {
+        using (var context = new AppDbContext())
+        {
+            string plateNumber = txtPlateNumber.Text.ToLower();
+            bool isPlateExists = context.Vehicles.Any(v => v.PlateNumber.ToLower() == plateNumber);
+            if (isPlateExists)
+            {
+                var maintenanceRecords = context.Maintenances
+                    .Include(m => m.Vehicle)
+                    .Where(m => m.Vehicle.PlateNumber.ToLower() == plateNumber)
+                    .ToList();
+
+                foreach (var maintenance in maintenanceRecords)
+                    maintenance.CalculateTotalAmount();
+
+                dgwOldRecords.DataSource = maintenanceRecords;
+            }
+            else
+            {
+                MessageBox.Show("Araç veritabanında bulunamadı. Lütfen öncelikle Kaydet butonuna tıklayın.");
+                dgwOldRecords.DataSource = null;
+            }
+        }
+    }
+
+    private void txtPlateNumber_TextChanged(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(txtPlateNumber.Text))
+            ButtonsEnabled();
+    }
+
+    private void ButtonsDisabled()
+    {
+        btnAddVehicle.Enabled = false;
+        btnSearch.Enabled = false;
+        btnAddMaintenance.Enabled = false;
+    }
+    private void ButtonsEnabled()
+    {
+        btnAddVehicle.Enabled = true;
+        btnSearch.Enabled = true;
+        btnAddMaintenance.Enabled = true;
     }
 }
