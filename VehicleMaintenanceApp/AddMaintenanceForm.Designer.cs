@@ -91,7 +91,7 @@ partial class AddMaintenanceForm
         groupBox1.Controls.Add(label2);
         groupBox1.Controls.Add(txtMaintenanceType);
         groupBox1.Controls.Add(label1);
-        groupBox1.Location = new Point(56, 525);
+        groupBox1.Location = new Point(56, 465);
         groupBox1.Name = "groupBox1";
         groupBox1.Size = new Size(457, 258);
         groupBox1.TabIndex = 1;
@@ -225,7 +225,7 @@ partial class AddMaintenanceForm
         dgwNewRecords.MultiSelect = false;
         dgwNewRecords.Name = "dgwNewRecords";
         dgwNewRecords.ReadOnly = true;
-        dgwNewRecords.Size = new Size(1281, 446);
+        dgwNewRecords.Size = new Size(1281, 398);
         dgwNewRecords.TabIndex = 8;
         dgwNewRecords.CellClick += dgwNewRecords_CellClick;
         dgwNewRecords.SelectionChanged += dgwNewRecords_SelectionChanged;
@@ -318,7 +318,7 @@ partial class AddMaintenanceForm
         groupBox2.Controls.Add(label11);
         groupBox2.Controls.Add(txtUpdatedMaintenanceType);
         groupBox2.Controls.Add(label12);
-        groupBox2.Location = new Point(638, 525);
+        groupBox2.Location = new Point(638, 465);
         groupBox2.Name = "groupBox2";
         groupBox2.Size = new Size(457, 258);
         groupBox2.TabIndex = 9;
@@ -440,14 +440,14 @@ partial class AddMaintenanceForm
         lblTotalPrice.AutoSize = true;
         lblTotalPrice.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         lblTotalPrice.ForeColor = Color.Red;
-        lblTotalPrice.Location = new Point(1150, 525);
+        lblTotalPrice.Location = new Point(1150, 465);
         lblTotalPrice.Name = "lblTotalPrice";
         lblTotalPrice.Size = new Size(0, 21);
         lblTotalPrice.TabIndex = 10;
         // 
         // btnDeleteMaintanence
         // 
-        btnDeleteMaintanence.Location = new Point(1202, 642);
+        btnDeleteMaintanence.Location = new Point(1202, 582);
         btnDeleteMaintanence.Name = "btnDeleteMaintanence";
         btnDeleteMaintanence.Size = new Size(135, 38);
         btnDeleteMaintanence.TabIndex = 11;
